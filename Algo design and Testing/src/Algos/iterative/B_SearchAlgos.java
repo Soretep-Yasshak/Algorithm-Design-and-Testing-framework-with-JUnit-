@@ -15,7 +15,7 @@ public class B_SearchAlgos {
 
             if (data[mid] == target) {
 
-                result          = mid;
+                return mid;
 
             }
 

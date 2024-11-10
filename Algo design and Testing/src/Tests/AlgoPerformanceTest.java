@@ -28,9 +28,9 @@ public class AlgoPerformanceTest {
     @BeforeEach
     void setUp() {
 
-        smallArray             = generateRandomArray();
-        mediumArray            = generateRandomArray();
-        largeArray             = generateRandomArray();
+        smallArray            = generateRandomArray();
+        mediumArray           = generateRandomArray();
+        largeArray            = generateRandomArray();
 
     }
 
@@ -64,6 +64,7 @@ public class AlgoPerformanceTest {
 
     }
 
+
     boolean isSorted(int[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
@@ -79,6 +80,7 @@ public class AlgoPerformanceTest {
         return true;
 
     }
+
 
     @Test
     void testSequentialSearch() {
@@ -128,6 +130,7 @@ public class AlgoPerformanceTest {
             System.out.println("contains 8: " + contains(array, 8));
 
             System.out.println("\n=======================================================\n");
+
         }
 
     }
@@ -179,23 +182,23 @@ public class AlgoPerformanceTest {
             // Test iterative binary search
             long startTime      = System.nanoTime();
             int iterativeResult = binarySearch(array, target);
-            long iterativeTime  = (System.nanoTime() - startTime) / 1_000_000;
+            long iterativeTime  = System.nanoTime() - startTime;
 
             // Test recursive binary search
             startTime           = System.nanoTime();
             int recursiveResult = R_binarySearch(array, target, 0, array.length - 1);
-            long recursiveTime  = (System.nanoTime() - startTime) / 1_000_000;
+            long recursiveTime  = System.nanoTime() - startTime;
 
             assertEquals(iterativeResult, recursiveResult);
             assertEquals(targetIndex, iterativeResult);
 
             System.out.println("\nIterative Binary Search:");
             System.out.println("\tFound at index: " + iterativeResult);
-            System.out.println("\tExecution Time: " + iterativeTime + " ms");
+            System.out.println("\tExecution Time: " + iterativeTime + " ns");
 
             System.out.println("\nRecursive Binary Search:");
             System.out.println("\tFound at index: " + recursiveResult);
-            System.out.println("\tExecution Time: " + recursiveTime + " ms");
+            System.out.println("\tExecution Time: " + recursiveTime + " ns");
 
         }
 
@@ -222,19 +225,19 @@ public class AlgoPerformanceTest {
 
             if (sizes[i].equals("Small")) {
 
-                array          = smallArray.clone();
+                array         = smallArray.clone();
 
             }
 
             else if (sizes[i].equals("Medium")) {
 
-                array          = mediumArray.clone();
+                array         = mediumArray.clone();
 
             }
 
             else {
 
-                array          = largeArray.clone();
+                array         = largeArray.clone();
 
             }
 
@@ -299,7 +302,7 @@ public class AlgoPerformanceTest {
 
         }
 
-        long timeInMs        = (System.nanoTime() - startTime) / 1_000_000;
+        long timeInNs         = System.nanoTime() - startTime;
 
         assertTrue(isSorted(array));
 
@@ -311,7 +314,7 @@ public class AlgoPerformanceTest {
 
         }
 
-        System.out.println("\n\tExecution Time: " + timeInMs + " ms");
+        System.out.println("\n\tExecution Time: " + timeInNs + " ns");
 
     }
 
